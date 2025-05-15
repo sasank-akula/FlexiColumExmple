@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="GroceryService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotation Term="Core.Links">
+                <Collection>
+                    <Record>
+                        <PropertyValue Property="rel" String="author"/>
+                        <PropertyValue Property="href" String="https://cap.cloud.sap"/>
+                    </Record>
+                </Collection>
+            </Annotation>
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Customers" EntityType="GroceryService.Customers">
+                    <NavigationPropertyBinding Path="toOrders" Target="Orders"/>
+                </EntitySet>
+                <EntitySet Name="Orders" EntityType="GroceryService.Orders">
+                    <NavigationPropertyBinding Path="customer" Target="Customers"/>
+                    <NavigationPropertyBinding Path="toItems" Target="OrderItems"/>
+                </EntitySet>
+                <EntitySet Name="Items" EntityType="GroceryService.Items"/>
+                <EntitySet Name="OrderItems" EntityType="GroceryService.OrderItems">
+                    <NavigationPropertyBinding Path="order" Target="Orders"/>
+                    <NavigationPropertyBinding Path="item" Target="Items"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Customers">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String"/>
+                <Property Name="email" Type="Edm.String"/>
+                <Property Name="address" Type="Edm.String"/>
+                <Property Name="phoneNumber" Type="Edm.String"/>
+                <NavigationProperty Name="toOrders" Type="Collection(GroceryService.Orders)" Partner="customer">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Orders">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="orderDate" Type="Edm.Date"/>
+                <Property Name="totalAmount" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <NavigationProperty Name="customer" Type="GroceryService.Customers" Partner="toOrders">
+                    <ReferentialConstraint Property="customer_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="customer_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="toItems" Type="Collection(GroceryService.OrderItems)" Partner="order">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Items">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="name" Type="Edm.String"/>
+                <Property Name="price" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="stockQuantity" Type="Edm.Int32"/>
+            </EntityType>
+            <EntityType Name="OrderItems">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="quantity" Type="Edm.Int32"/>
+                <Property Name="itemPrice" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <Property Name="totalItemPrice" Type="Edm.Decimal" Precision="10" Scale="2"/>
+                <NavigationProperty Name="order" Type="GroceryService.Orders" Partner="toItems">
+                    <ReferentialConstraint Property="order_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="order_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="item" Type="GroceryService.Items">
+                    <ReferentialConstraint Property="item_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="item_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <Annotations Target="GroceryService.Customers/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="GroceryService.Orders/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="GroceryService.Items/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="GroceryService.OrderItems/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,157 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "com.sap.project1",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.17.5",
+      "toolsId": "530f3c97-dbb9-4d65-8eb5-6573a1248399"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/grocery/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.135.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.sap.project1.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "synchronizationMode": "None",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+			"config": {
+				"routerClass": "sap.f.routing.Router",
+				"type": "View",
+				"viewType": "XML",
+				"path": "com.sap.project1.view",
+				"controlId": "flexibleColumnLayout",
+				"transition": "slide",
+				"bypassed": {
+				},
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": ":layout:",
+					"name": "list",
+					"target": [
+						"list",
+						"detail"
+					]
+				},
+				{
+					"pattern": "detail/{Customer}/{layout}",
+					"name": "detail",
+					"target": [
+						"list",
+						"detail"
+					]
+				},
+				{
+					"pattern": "detail/{Customer}/detailDetail/{Order}/{layout}",
+					"name": "detailDetail",
+					"target": [
+						"list",
+						"detail",
+						"detailDetail"
+					]
+				}
+			],
+			"targets": {
+				"list": {
+					"name": "List",
+					"controlAggregation": "beginColumnPages"
+				},
+				"detail": {
+					"name": "Detail",
+					"controlAggregation": "midColumnPages"
+				},
+				"detailDetail": {
+					"name": "DetailDetail",
+					"controlAggregation": "endColumnPages"
+				}
+			}
+    },
+    "rootView": {
+			"viewName": "com.sap.project1.view.App",
+			"type": "XML",
+			"async": true,
+			"id": "app"
+		},
+    "dependencies": {
+			"minUI5Version": "1.98.0",
+			"libs": {
+				"sap.f": {},
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.uxap": {}
+			}
+		},
+		"config": {
+			"fullWidth": true
+		}
+  }
+}

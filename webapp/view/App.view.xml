@@ -1,0 +1,20 @@
+<mvc:View
+	displayBlock="true"
+	height="100%"
+    id="app"
+	xmlns="sap.f"
+	xmlns:mvc="sap.ui.core.mvc">
+		<FlexibleColumnLayout 
+        layout="{layoutModel>/layout}"
+        id="flexibleColumnLayout"
+		stateChange=".onStateChanged"
+		backgroundDesign="Translucent"
+		>
+            <beginColumnPages>
+			    <mvc:XMLView id="beginView" viewName="com.sap.project1.view.List"/>
+		    </beginColumnPages>
+            <midColumnPages>
+			<mvc:XMLView id="detailView" viewName="com.sap.project1.view.Detail"/>
+		    </midColumnPages>
+        </FlexibleColumnLayout>
+</mvc:View>
