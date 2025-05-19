@@ -8,13 +8,17 @@
         layout="{layoutModel>/layout}"
         id="flexibleColumnLayout"
 		stateChange=".onStateChanged"
-		backgroundDesign="Translucent"
+		backgroundDesign="Solid"
 		>
             <beginColumnPages>
-			    <mvc:XMLView id="beginView" viewName="com.sap.project1.view.List"/>
+			    <!-- <mvc:XMLView id="beginView" viewName="com.sap.project1.view.List"/> -->
 		    </beginColumnPages>
             <midColumnPages>
-			<mvc:XMLView id="detailView" viewName="com.sap.project1.view.Detail"/>
+			<!-- <mvc:XMLView id="detailView" viewName="com.sap.project1.view.Detail"/> -->
 		    </midColumnPages>
-        </FlexibleColumnLayout>
+			<endColumnPages>
+			<!-- <mvc:XMLView id="detailDetailView" viewName="com.sap.project1.view.DetailDetail"/> -->
+		    </endColumnPages>
+			
+			</FlexibleColumnLayout>
 </mvc:View>

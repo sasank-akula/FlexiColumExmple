@@ -1,59 +1,60 @@
-<mvc:View xmlns:table="sap.ui.table"
-	controllerName="com.sap.project1.controller.DetailDetail"
-	xmlns="sap.f"
-	xmlns:m="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
-	<DynamicPage toggleHeaderOnTitleClick="false">
-		<title>
-			<DynamicPageTitle>
-				<heading>
-					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
-						<m:Table
-                                id="itemsTable"
-                                items="{toItems}"
-                            >
-                                <m:columns>
-                                    <m:Column>
-                                        <m:Text text="Order ID" />
-                                    </m:Column>
-                                    <m:Column>
-                                        <m:Text text="Item ID" />
-                                    </m:Column>
-									<m:Column>
-                                        <m:Text text="Item Price" />
-                                    </m:Column>
-                                    <m:Column>
-                                        <m:Text text="Quantity" />
-                                    </m:Column>
-									<m:Column>
-                                        <m:Text text="Item Total price" />
-                                    </m:Column>
-                                </m:columns>
-                                <m:items>
-                                    <m:ColumnListItem type="Navigation"  press=".onOrderPress">
-                                        <m:cells>
-                                            <m:ObjectIdentifier
-                                                text="{order_ID}"
-                                            />
-                                            <m:ObjectIdentifier
-                                                text="{item_ID}"
-                                            />
-                                            <m:ObjectIdentifier
-                                                text="{itemPrice}"
-                                            />
-											<m:ObjectIdentifier
-                                                text="{quantity}"
-                                            />
-											<m:ObjectIdentifier
-                                                text="{totalItemPrice}"
-                                            />
-                                        </m:cells>
-                                    </m:ColumnListItem>
-                                </m:items>
-                            </m:Table>
-					</m:FlexBox>
-				</heading>
-			</DynamicPageTitle>
-		</title>
-	</DynamicPage>
+<mvc:View
+    xmlns:table="sap.ui.table"
+    controllerName="com.sap.project1.controller.DetailDetail"
+    xmlns="sap.f"
+    xmlns:m="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <DynamicPage toggleHeaderOnTitleClick="false">
+        <title>
+            <DynamicPageTitle>
+                <heading >
+                        <m:OverflowToolbarButton
+                            type="Transparent"
+                            icon="sap-icon://decline"
+                            press=".handleClose"
+                            tooltip="Close"   
+                        />
+                </heading>
+            </DynamicPageTitle>
+        </title>
+        <content>
+            <m:Table
+                id="itemsTable"
+                items="{toItems}"
+            >
+                <m:columns>
+                    <m:Column>
+                        <m:Text text="Order ID" />
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="Item ID" />
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="Item Price" />
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="Quantity" />
+                    </m:Column>
+                    <m:Column>
+                        <m:Text text="Item Total price" />
+                    </m:Column>
+                </m:columns>
+                <m:items>
+                    <m:ColumnListItem
+                        type="Navigation"
+                        press=".onOrderPress"
+                    >
+                        <m:cells>
+                            <m:ObjectIdentifier text="{order_ID}" />
+                            <m:ObjectIdentifier text="{item_ID}" />
+                            <m:ObjectIdentifier text="{itemPrice}" />
+                            <m:ObjectIdentifier text="{quantity}" />
+                            <m:ObjectIdentifier text="{totalItemPrice}" />
+                        </m:cells>
+                    </m:ColumnListItem>
+                </m:items>
+            </m:Table>
+        </content>
+    </DynamicPage>
 </mvc:View>

@@ -123,8 +123,8 @@
 			"targets": {
 				"list": {
 					"name": "List",
-					"controlAggregation": "beginColumnPages",
-          "viewLevel": 0
+					"controlAggregation": "beginColumnPages"
+          
 				},
 				"detail": {
 					"name": "Detail",

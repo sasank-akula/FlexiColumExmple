@@ -36,7 +36,12 @@
                         type="Transparent"
                     />
                 </actions>
+                 <navigationActions>
+                <m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press=".handleClose"  tooltip="Close middle column" />
+			</navigationActions>
             </ObjectPageDynamicHeaderTitle>
+           
+            
         </headerTitle>
         <headerContent>
             <m:FlexBox

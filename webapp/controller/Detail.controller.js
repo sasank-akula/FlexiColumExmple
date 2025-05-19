@@ -29,9 +29,14 @@ sap.ui.define([
 			oObjectPage.setShowFooter(!bCurrentShowFooterState);
 		},
 
-		onExit: function () {
-			this.oRouter.getRoute("detail").detachPatternMatched(this._onProductMatched, this);
-		},
+		handleClose: function () {
+			var oFCL = this.getView().getParent().getParent(); // FlexibleColumnLayout
+			oFCL.setLayout(sap.f.LayoutType.OneColumn); // Collapse to one column
+		
+			// Optional: Navigate to the master route
+			this.oRouter.navTo("list");
+		}
+		,
         onOrderPress: function (oEvent) {
             const oContext = oEvent.getSource().getBindingContext();
             const oOrder = oContext.getObject();

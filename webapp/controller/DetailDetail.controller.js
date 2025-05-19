@@ -12,11 +12,9 @@ sap.ui.define([
             // Attach the route to trigger onPatternMatch
             this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onPatternMatch, this);
         },
-
         _onPatternMatch: function (oEvent) {
             this._orderId = oEvent.getParameter("arguments").Order;
             this._customerId = oEvent.getParameter("arguments").Order;
-            debugger
             var sPath = "/Orders('" + this._orderId + "')";
 
             // Bind the view element to the path
@@ -25,9 +23,13 @@ sap.ui.define([
             });
         },
 
-        onExit: function () {
-            // Clean up the event listener
-            this.oRouter.getRoute("detailDetail").detachPatternMatched(this._onPatternMatch, this);
+        handleClose: function () {
+            var oFCL = this.getView().getParent().getParent(); // FlexibleColumnLayout
+            oFCL.setLayout(sap.f.LayoutType.TwoColumnsMidExpanded); // Collapse to one column
+        
+            // Optional: Navigate to the master route
+            this.oRouter.navTo("detail");
         }
+        
     });
 });
