@@ -80,7 +80,7 @@
                             >
                                 <m:columns>
                                     <m:Column>
-                                        <m:Text text="Customer ID" />
+                                        <m:Text text="Order ID" />
                                     </m:Column>
                                     <m:Column>
                                         <m:Text text="Order Date" />
@@ -93,7 +93,7 @@
                                     <m:ColumnListItem type="Navigation"  press=".onOrderPress">
                                         <m:cells>
                                             <m:ObjectIdentifier
-                                                text="{customer_ID}"
+                                                text="{ID}"
                                             />
                                             <m:ObjectIdentifier
                                                 text="{orderDate}"

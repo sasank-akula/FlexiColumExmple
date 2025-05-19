@@ -36,15 +36,11 @@ sap.ui.define([
             const oContext = oEvent.getSource().getBindingContext();
             const oOrder = oContext.getObject();
             const sOrderId = oOrder.ID;
-            const sCustomerId = this._customerId; // Make sure this is stored earlier
-        
-            const sLayout = fioriLibrary.LayoutType.ThreeColumnsEndExpanded;
-        debugger
-            if (sCustomerId && sOrderId) {
+			
+            if (sOrderId) {
                 this.oRouter.navTo("detailDetail", {
-                    Customer: sCustomerId,
                     Order: sOrderId,
-                    layout: sLayout
+                    layout: fioriLibrary.LayoutType.ThreeColumnsEndExpanded
                 });
             } else {
                 console.error("Customer ID or Order ID is missing");

@@ -14,17 +14,13 @@ sap.ui.define([
         },
 
         _onPatternMatch: function (oEvent) {
-            // Get arguments from the route (customerId, orderId, and itemId or similar)
-            this._customerId = oEvent.getParameter("arguments").customer || this._customerId || "0";
-            this._orderId = oEvent.getParameter("arguments").order || this._orderId || "0";
-
-            // Construct the correct path based on the customer and order
-            var sPath = "/Customers('" + this._customerId + "')/Orders('" + this._orderId + "')/OrderItems";
+            this._orderId = oEvent.getParameter("arguments").Order;
+            debugger
+            var sPath = "/Orders('" + this._orderId + "')";
 
             // Bind the view element to the path
             this.getView().bindElement({
-                path: sPath, // Dynamic binding path for order items under specific customer and order
-                model: "" // Use default model unless specified
+                path: sPath
             });
         },
 

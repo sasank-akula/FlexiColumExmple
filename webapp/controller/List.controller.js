@@ -40,7 +40,6 @@ sap.ui.define([
 		},
         onListItemPress: function (oEvent) {
             const sPath = oEvent.getSource().getBindingContext().getPath(); 
-            
             const customerId = sPath.split("(")[1].split(")")[0];
                 this.oRouter.navTo("detail", {
                     Customer: customerId,

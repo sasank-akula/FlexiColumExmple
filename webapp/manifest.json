@@ -111,7 +111,7 @@
 					]
 				},
 				{
-					"pattern": "detail/{Customer}/detailDetail/{Order}/{layout}",
+					"pattern": "detailDetail/{Order}/{layout}",
 					"name": "detailDetail",
 					"target": [
 						"list",
