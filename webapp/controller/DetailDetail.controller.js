@@ -15,6 +15,7 @@ sap.ui.define([
 
         _onPatternMatch: function (oEvent) {
             this._orderId = oEvent.getParameter("arguments").Order;
+            this._customerId = oEvent.getParameter("arguments").Order;
             debugger
             var sPath = "/Orders('" + this._orderId + "')";
 

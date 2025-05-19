@@ -123,15 +123,18 @@
 			"targets": {
 				"list": {
 					"name": "List",
-					"controlAggregation": "beginColumnPages"
+					"controlAggregation": "beginColumnPages",
+          "viewLevel": 0
 				},
 				"detail": {
 					"name": "Detail",
-					"controlAggregation": "midColumnPages"
+					"controlAggregation": "midColumnPages",
+          "viewLevel": 1
 				},
 				"detailDetail": {
 					"name": "DetailDetail",
-					"controlAggregation": "endColumnPages"
+					"controlAggregation": "endColumnPages",
+          "viewLevel": 2
 				}
 			}
     },

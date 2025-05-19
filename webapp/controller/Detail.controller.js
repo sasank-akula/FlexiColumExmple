@@ -12,7 +12,7 @@ sap.ui.define([
 
 			// Attach route match handler
 			this.oRouter.getRoute("detail").attachPatternMatched(this._onProductMatched, this);
-            this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
+            // this.oRouter.getRoute("detailDetail").attachPatternMatched(this._onProductMatched, this);
 		},
 
 		_onProductMatched: function (oEvent) {
@@ -36,9 +36,11 @@ sap.ui.define([
             const oContext = oEvent.getSource().getBindingContext();
             const oOrder = oContext.getObject();
             const sOrderId = oOrder.ID;
+            const sCustomerId = this._customerId; // Make sure this is stored earlier
 			
-            if (sOrderId) {
+            if (sCustomerId && sOrderId) {
                 this.oRouter.navTo("detailDetail", {
+                    Customer: sCustomerId,
                     Order: sOrderId,
                     layout: fioriLibrary.LayoutType.ThreeColumnsEndExpanded
                 });
